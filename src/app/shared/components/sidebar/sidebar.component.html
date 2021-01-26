@@ -1,0 +1,47 @@
+<!-- <div class="d-flex">
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+        &#9776;
+      </button>
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills collapse navbar-collapse" orientation="vertical" [ngbCollapse]="isMenuCollapsed">
+
+  
+    </ul>
+  
+    <div [ngbNavOutlet]="nav" class="ml-4"></div>
+  </div> -->
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+        &#9776;
+      </button>
+<nav class="sidebar" [ngClass]="{'hide' : isMenuCollapsed, 'collapsed': menuCollapsedIcons}">
+    <ul class="sidebar-list nav-pills collapse navbar-collapse" ngbNav #nav="ngbNav" [(activeId)]="active" orientation="vertical" [ngbCollapse]="isMenuCollapsed">
+        <li class="sidebar-list-item" ngbNavItem>
+            <a ngbNavLink routerLink="/dashboard">
+                <i class="fa fa-fw fa-dashboard"></i>
+            <span>{{ 'Dashboard' | translate }}</span>
+            </a>
+        </li>
+        <li class="sidebar-list-item" ngbNavItem>
+            <a ngbNavLink>
+                <i class="fa fa-fw fa-bar-chart-o"></i>
+            <span>{{ 'Charts' | translate }}</span>
+            </a>
+        </li>
+        <li class="sidebar-list-item" ngbNavItem>
+            <a ngbNavLink>
+                <i class="fa fa-fw fa-table"></i>
+            <span>{{ 'Tables' | translate }}</span>
+            </a>
+        </li>
+        <li class="sidebar-list-item" ngbNavItem>
+            <a ngbNavLink>
+                <i class="fa fa-fw fa-edit"></i>
+            <span>{{ 'Forms' | translate }}</span>
+            </a>
+        </li>
+    </ul>
+    <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: menuCollapsedIcons }" class="toggle-button">
+        <i class="fa fa-fw fa-angle-double-{{ menuCollapsedIcons ? 'right' : 'left' }}"></i>&nbsp;
+        <span>{{ 'Collapse Sidebar' | translate }}</span>
+    </div>
+</nav>

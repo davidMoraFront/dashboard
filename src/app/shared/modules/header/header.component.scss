@@ -1,0 +1,38 @@
+@import "../../../../styles.scss";
+
+:host {
+  nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333333;
+
+    .navbar-brand {
+      margin-left: 45px;
+    }
+
+    .nav-tabs {
+      border-bottom: none;
+
+      .nav-link {
+        border-color: transparent;
+        &:hover,
+        &:focus {
+          border-color: transparent;
+        }
+      }
+
+      .nav-item {
+        .nav-link[ngbdropdowntoggle] {
+          background-color: $background-color-primary;
+          color: $link-color;
+          outline: 0;
+          border: 0;
+        }
+
+        .flag-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

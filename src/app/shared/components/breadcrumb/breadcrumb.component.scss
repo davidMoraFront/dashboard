@@ -1,0 +1,9 @@
+@import "../../../../styles.scss";
+
+a:hover {
+  color: $link-hover-color-reverse;
+}
+
+.separator {
+  margin: 0 5px;
+}

@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+/* variables */
+$link-color: #999999;
+$link-hover-color: #ffffff;
+$link-hover-color-reverse: #333333;
+$background-color-primary: #333333;
+
+a {
+  color: $link-color;
+  //   outline: 0;
+
+  &:hover {
+    color: $link-hover-color;
+  }
+}

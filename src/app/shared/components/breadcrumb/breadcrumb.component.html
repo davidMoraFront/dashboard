@@ -1,0 +1,10 @@
+<ng-container *ngFor="let item of path; last as isLast">
+    <div *ngIf="!isLast; then noLastItem else lastItem"></div>
+    <ng-template #noLastItem>
+        <a href="{{item}}">{{ item | translate }}</a>
+        <span class="separator">/</span>
+    </ng-template>
+    <ng-template #lastItem>
+        <span>{{ item  | translate }}</span>
+    </ng-template>
+</ng-container>
