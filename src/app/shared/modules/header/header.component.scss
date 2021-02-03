@@ -2,12 +2,16 @@
 
 :host {
   nav {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     background-color: #333333;
 
     .navbar-brand {
       margin-left: 45px;
+      color: $link-nav-color;
     }
 
     .nav-tabs {
@@ -24,7 +28,7 @@
       .nav-item {
         .nav-link[ngbdropdowntoggle] {
           background-color: $background-color-primary;
-          color: $link-color;
+          color: $link-nav-color;
           outline: 0;
           border: 0;
         }

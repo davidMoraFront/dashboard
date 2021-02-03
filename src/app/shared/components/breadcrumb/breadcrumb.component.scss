@@ -1,9 +1,19 @@
 @import "../../../../styles.scss";
 
-a:hover {
-  color: $link-hover-color-reverse;
-}
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
 
-.separator {
-  margin: 0 5px;
+  // a:hover {
+  //   color: $link-nav-hover-color-reverse;
+  // }
+
+  .separator {
+    margin: 0 5px;
+  }
 }

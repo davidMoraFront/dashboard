@@ -1,18 +1,19 @@
+import { SharedModule } from './../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 
 @NgModule({
-  declarations: [DashboardComponent, BreadcrumbComponent],
+  declarations: [DashboardComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ],
   exports: [DashboardComponent]
 })
