@@ -9,7 +9,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { UsersDetailsComponent } from './components/users-details/users-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MarkAsteriskDirective } from 'src/app/shared/directives/mark-asterisk.directive';
+import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
 
 
 @NgModule({
@@ -22,7 +22,6 @@ import { MarkAsteriskDirective } from 'src/app/shared/directives/mark-asterisk.d
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [UsersListComponent],
-  // bootstrap: [UsersListComponent]
+  exports: [UsersListComponent]
 })
 export class UsersModule { }

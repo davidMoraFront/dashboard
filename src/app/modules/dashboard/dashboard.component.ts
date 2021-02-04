@@ -1,3 +1,4 @@
+import { LoadingService } from './../../core/services/loading.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

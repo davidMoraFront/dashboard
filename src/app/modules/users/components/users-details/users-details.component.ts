@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/interfaces/user';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'app-users-details',
@@ -20,7 +21,8 @@ export class UsersDetailsComponent implements OnInit {
   constructor(private router: Router, 
     private fb: FormBuilder, 
     private route: ActivatedRoute,
-    private userService: UsersService) {
+    private userService: UsersService,
+    public loadingService: LoadingService) {
       this.userForm = this.fb.group({}) 
     }
 

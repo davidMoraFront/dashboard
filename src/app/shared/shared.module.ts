@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LanguageTranslationModule } from './modules/language-translation/language-translation.module';
 import { NgbdSortableHeader } from './directives/sortable.directive';
 import { MarkAsteriskDirective } from './directives/mark-asterisk.directive';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 
