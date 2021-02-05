@@ -10,7 +10,8 @@
     <div [ngbNavOutlet]="nav" class="ml-4"></div>
   </div> -->
 
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <!-- <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"> -->
+        <button class="navbar-toggler" type="button" (click)="toggleShow(); isMenuCollapsed = !isMenuCollapsed;">
         &#9776;
       </button>
 <nav class="sidebar" [ngClass]="{'hide' : isMenuCollapsed, 'collapsed': menuCollapsedIcons}">

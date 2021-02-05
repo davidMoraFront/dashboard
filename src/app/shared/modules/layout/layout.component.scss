@@ -14,8 +14,20 @@
   overflow-y: scroll;
   position: relative;
   overflow: hidden;
+}
 
-  &.collapsed {
-    margin-left: 60px;
+.collapsed + .main-container {
+  margin-left: 60px;
+
+  app-loading {
+    left: calc(50% + 60px / 2);
+  }
+}
+
+.hide + .main-container {
+  margin-left: 0;
+
+  app-loading {
+    left: 50%;
   }
 }

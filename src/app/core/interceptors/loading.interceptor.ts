@@ -19,16 +19,18 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   public removeRequest(req: HttpRequest<unknown>) {
     const index = this.requests.indexOf(req);
-    // if (index >= 0) {
-    //   this.requests.splice(index, 1);
-    // }
-    // this.loadingService.isLoading.next(this.requests.length > 0);
+
+    // comment to show spinner
+    if (index >= 0) {
+      this.requests.splice(index, 1);
+    }
+    this.loadingService.isLoading.next(this.requests.length > 0);
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log(this.requests);
+    // console.log(this.requests);
     
-    console.log('detect request', request.url);
+    // console.log('detect request', request.url);
 
     this.requests.push(request);
     this.loadingService.isLoading.next(true);
@@ -39,7 +41,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           this.removeRequest(request);
           observer.next(event);
-          console.log('remove requests', request.url);
+          // console.log('remove requests', request.url);
         }
       }, error => {
         this.removeRequest(request);

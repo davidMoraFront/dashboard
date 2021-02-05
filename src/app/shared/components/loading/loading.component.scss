@@ -1,9 +1,10 @@
-.text-center {
+:host {
   position: fixed;
   background-color: black;
   z-index: 9999;
   top: 50%;
   left: calc(50% + 235px / 2);
+  transition: left 0.2s ease-in-out;
 
   .spinner-border {
     position: absolute; /* cambiamos de fixed a absolute */
@@ -15,10 +16,10 @@
   }
 }
 
-.d-flex {
-  position: fixed;
-  background-color: black;
-  z-index: 9999;
-  top: 50%;
-  left: calc(50% + 235px / 2);
-}
+// .d-flex {
+//   position: fixed;
+//   background-color: black;
+//   z-index: 9999;
+//   top: 50%;
+//   left: calc(50% + 235px / 2);
+// }

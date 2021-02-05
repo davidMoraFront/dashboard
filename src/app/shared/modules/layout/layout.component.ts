@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 })
 export class LayoutComponent implements OnInit {
   collapedSideBar: boolean;
+  hideSideBar: boolean;
   
   constructor(public loadingService: LoadingService) { }
 
@@ -16,6 +17,10 @@ export class LayoutComponent implements OnInit {
 
   receiveCollapsed($event) {
     this.collapedSideBar = $event;
-}
+  }
+
+  receiveToggle($event) {
+    this.hideSideBar = $event;
+  }
 
 }

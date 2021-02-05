@@ -100,16 +100,19 @@ export class UsersService {
   private _search(): Observable<SearchResult> {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
+    
     // 1. sort
     let users = sort(this.allUsers, sortColumn, sortDirection);
 
     // 2. filter
-    users = users.filter(user => matches(user, searchTerm));
-    const total = users.length;
+    if (this.allUsers) {
+      users = users.filter(user => matches(user, searchTerm));
+      const total = users.length;
 
-    // 3. paginate
-    users = users.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({users, total});
+      // 3. paginate
+      users = users.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+      return of({users, total});
+    }
   }
 
   httpOptions = {

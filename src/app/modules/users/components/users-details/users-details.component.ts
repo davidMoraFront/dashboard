@@ -29,7 +29,6 @@ export class UsersDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.path = this.router.url.split('/').slice(1);
     this.route.params.subscribe(params => {
-      console.log(params);
       this.userId = params.userId;
       if (params.userId !== undefined) {
         this.getUserData(params.userId);

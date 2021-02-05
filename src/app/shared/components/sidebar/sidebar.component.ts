@@ -9,19 +9,27 @@ export class SidebarComponent implements OnInit {
   isMenuCollapsed: boolean;
   menuCollapsedIcons: boolean;
   active = 'top';
+  menuHide: boolean;
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
+  @Output() toggleEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
     this.isMenuCollapsed = false;
     this.menuCollapsedIcons = false;
+    this.menuHide = false;
   }
 
   toggleCollapsed() {
     this.menuCollapsedIcons = !this.menuCollapsedIcons;
     this.collapsedEvent.emit(this.menuCollapsedIcons);
+  }
+
+  toggleShow() {
+    this.menuHide = !this.menuHide;
+    this.toggleEvent.emit(this.menuHide);
   }
 
 }

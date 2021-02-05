@@ -1,6 +1,8 @@
 <app-header></app-header>
-<app-sidebar (collapsedEvent)="receiveCollapsed($event)"></app-sidebar>
-<div [ngClass]="{ collapsed: collapedSideBar }" class="main-container">
+<app-sidebar (collapsedEvent)="receiveCollapsed($event)"
+    (toggleEvent)="receiveToggle($event)"
+    [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }"></app-sidebar>
+<div class="main-container">
     <router-outlet></router-outlet>
     <app-loading *ngIf="loadingService.loadingStatus"></app-loading>
 </div>
