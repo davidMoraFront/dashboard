@@ -59,8 +59,10 @@ export class UsersDetailsComponent implements OnInit {
   }
 
   getUserData(id: number) {
-    this.userService.getUser(id).subscribe(user => {
-      this.fillForm(user);
+    setTimeout(() => {
+      this.userService.getUser(id).subscribe(user => {
+        this.fillForm(user);
+      })
     });
   }
 

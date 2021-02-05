@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NgbdSortableHeader, SortEvent } from 'src/app/shared/directives/sortable.directive';
 import { User } from 'src/app/shared/interfaces/user';
+import { UsersListService } from '../../services/users-list.service';
 
 @Component({
   selector: 'app-users-list',
@@ -19,9 +20,9 @@ export class UsersListComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(private router: Router, public usersService: UsersService) {
-    this.users$ = usersService.users$;
-    this.total$ = usersService.total$;
+  constructor(private router: Router, public usersListService: UsersListService) {
+    this.users$ = usersListService.users$;
+    this.total$ = usersListService.total$;
    }
 
   ngOnInit(): void {
@@ -35,8 +36,8 @@ export class UsersListComponent implements OnInit {
         header.direction = '';
       }
     });
-    this.usersService.sortColumn = column;
-    this.usersService.sortDirection = direction;
+    this.usersListService.sortColumn = column;
+    this.usersListService.sortDirection = direction;
   }
 
 }

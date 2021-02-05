@@ -2,8 +2,8 @@
 <button class="btn btn-primary" routerLink="/users/create">Create user</button>
 <form>
     <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="usersService.searchTerm"/>
-        <span class="ml-3" *ngIf="usersService.loading$ | async">Loading...</span>
+        Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="usersListService.searchTerm"/>
+        <span class="ml-3" *ngIf="usersListService.loading$ | async">Loading...</span>
     </div>
   
     <table class="table table-striped">
@@ -21,21 +21,21 @@
         <th scope="row">{{ user.id }}</th>
         <td>
           <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
-          <ngb-highlight [result]="user.name" [term]="usersService.searchTerm"></ngb-highlight>
+          <ngb-highlight [result]="user.name" [term]="usersListService.searchTerm"></ngb-highlight>
         </td>
-        <td><ngb-highlight [result]="user.email" [term]="usersService.searchTerm"></ngb-highlight></td>
-        <td><ngb-highlight [result]="user.address.city" [term]="usersService.searchTerm"></ngb-highlight></td>
-        <td><ngb-highlight [result]="user.company.companyName" [term]="usersService.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.email" [term]="usersListService.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.address.city" [term]="usersListService.searchTerm"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.company.companyName" [term]="usersListService.searchTerm"></ngb-highlight></td>
       </tr>
       </tbody>
     </table>
   
     <div class="d-flex justify-content-between p-2">
       <ngb-pagination
-        [collectionSize]="(total$ | async)!" [(page)]="usersService.page" [pageSize]="usersService.pageSize">
+        [collectionSize]="(total$ | async)!" [(page)]="usersListService.page" [pageSize]="usersListService.pageSize">
       </ngb-pagination>
   
-      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="usersService.pageSize">
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="usersListService.pageSize">
         <option [ngValue]="2">2 items per page</option>
         <option [ngValue]="4">4 items per page</option>
         <option [ngValue]="6">6 items per page</option>
