@@ -3,7 +3,7 @@
     (toggleEvent)="receiveToggle($event)"
     [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }"></app-sidebar>
 <div class="main-container">
-    <router-outlet></router-outlet>
     <app-loading *ngIf="loadingService.loadingStatus"></app-loading>
+    <router-outlet></router-outlet>
 </div>
 
