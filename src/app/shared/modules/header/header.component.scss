@@ -31,6 +31,10 @@
           color: $link-nav-color;
           outline: 0;
           border: 0;
+
+          &:hover {
+            color: $link-nav-hover-color;
+          }
         }
 
         .flag-icon {

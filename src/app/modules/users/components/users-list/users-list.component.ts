@@ -20,13 +20,16 @@ export class UsersListComponent implements OnInit {
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(private router: Router, public usersListService: UsersListService) {
+  constructor(private router: Router, public usersListService: UsersListService, public usersService: UsersService) {
     this.users$ = usersListService.users$;
     this.total$ = usersListService.total$;
    }
 
   ngOnInit(): void {
     this.path = this.router.url.split('/').slice(1);
+    setTimeout(() => {
+      this.usersService.getUsers().subscribe((res: User[]) => this.usersListService.load(res));
+    });
   }
 
   onSort({column, direction}: SortEvent) {

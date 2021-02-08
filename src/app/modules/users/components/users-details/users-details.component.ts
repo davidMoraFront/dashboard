@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/interfaces/user';
 import { LoadingService } from 'src/app/core/services/loading.service';
+import { UsersListService } from '../../services/users-list.service';
+import { of, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-users-details',
@@ -14,26 +16,30 @@ export class UsersDetailsComponent implements OnInit {
   public path: Array<string>;
   title = 'User details';
   userForm: FormGroup;
-  userId: string;
-
-  
+  userId: number;
 
   constructor(private router: Router, 
     private fb: FormBuilder, 
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private userService: UsersService,
-    public loadingService: LoadingService) {
-      this.userForm = this.fb.group({}) 
+    public loadingService: LoadingService,
+    public usersListService: UsersListService) {
+      this.userForm = this.fb.group({})
     }
 
   ngOnInit(): void {
-    this.path = this.router.url.split('/').slice(1);
-    this.route.params.subscribe(params => {
-      this.userId = params.userId;
+    this.activatedRoute.params.subscribe(params => {
       if (params.userId !== undefined) {
-        this.getUserData(params.userId);
+        this.userId = params.userId;
+        setTimeout(() => {
+          this.userService.getUser(this.userId).subscribe(user => {
+            this.fillForm(user);
+            this.fillBreadcrumb(user.name);
+          });
+        });
       }
     });
+    
     this.userForm = this.fb.group({
       name: ['', Validators.required],
       username: [''],
@@ -56,14 +62,12 @@ export class UsersDetailsComponent implements OnInit {
         website: ['']
       })
     });
+    
   }
 
-  getUserData(id: number) {
-    setTimeout(() => {
-      this.userService.getUser(id).subscribe(user => {
-        this.fillForm(user);
-      })
-    });
+  fillBreadcrumb(name: string) {
+    this.path = this.router.url.split('/').slice(1);
+    this.path.splice(1, 1 , name);
   }
 
   fillForm(user: User) {
@@ -92,7 +96,12 @@ export class UsersDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.userId === undefined) {
+      this.userService.addUser(this.userForm.value).subscribe();
+    } else {
+      this.userService.updateUser(this.userId, this.userForm.value).subscribe(res => {res; console.log(res)});
+    }
+    this.router.navigate(['/users']);
   }
 
 }

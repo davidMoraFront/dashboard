@@ -67,19 +67,23 @@
         width: 100%;
         display: block;
 
+        a:hover {
+          background: darken($background-color-primary, 5%);
+          color: #fff;
+        }
+
+        a.nav-link.active {
+          background-color: darken($background-color-primary, 5%);
+        }
+
+        a.router-link-active {
+          background: darken($background-color-primary, 5%);
+          color: #fff;
+        }
+
         .fa {
           margin-right: 10px;
         }
-      }
-
-      a:hover {
-        background: darken($background-color-primary, 5%);
-        color: #fff;
-      }
-
-      a.router-link-active {
-        background: darken($background-color-primary, 5%);
-        color: #fff;
       }
 
       .header-fields {

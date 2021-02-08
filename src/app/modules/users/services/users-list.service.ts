@@ -64,20 +64,24 @@ export class UsersListService {
     sortDirection: ''
   };
 
-  constructor(private http: HttpClient, private userService: UsersService) {
-    this._search$.pipe(
-      tap(() => this._loading$.next(true)),
-      debounceTime(200),
-      switchMap(() => this._search()),
-      delay(200),
-      tap(() => this._loading$.next(false))
-    ).subscribe(result => {
-      this._users$.next(result.users);
-      this._total$.next(result.total);
-    });
+  constructor(private http: HttpClient, private userService: UsersService) {}
 
-    this._search$.next();
-   }
+  load(res: User[]) {
+    setTimeout(() => {
+      this._search$.pipe(
+        tap(() => this._loading$.next(true)),
+        debounceTime(200),
+        switchMap(() => this._search()),
+        delay(200),
+        tap(() => this._loading$.next(false))
+      ).subscribe(result => {
+        this._users$.next(result.users);
+        this._total$.next(result.total);
+      });
+      this._search$.next();
+    });
+    this.allUsers = res;
+  }
 
   get users$() { return this._users$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
@@ -101,6 +105,9 @@ export class UsersListService {
 
   private _search(): Observable<SearchResult> {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
+    console.log(this.allUsers);
+    
+    
 
     // 1. sort
     let users = sort(this.allUsers, sortColumn, sortDirection);

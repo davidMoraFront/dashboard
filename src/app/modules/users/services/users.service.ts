@@ -36,6 +36,24 @@ export class UsersService {
     )
   }  
 
+  // HttpClient API post() method => Create user
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(Config.apiURL + '/users', JSON.stringify(user), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  // HttpClient API put() method => Update user
+  updateUser(id: number, user: User): Observable<User> {
+    return this.http.put<User>(Config.apiURL + '/users/' + id, JSON.stringify(user), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';

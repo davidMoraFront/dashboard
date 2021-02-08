@@ -6,6 +6,7 @@ $link-nav-hover-color-reverse: #333333;
 $background-color-primary: #333333;
 $background-color-dark: #000000;
 $border-color: #333333;
+$color-placeholder: #cccccc;
 
 .section-title {
   border-bottom: 1px solid $border-color;
@@ -32,6 +33,10 @@ a.nav-link {
 
 .required {
   margin-left: 3px;
+}
+
+*::placeholder {
+  color: $color-placeholder;
 }
 
 // *:not(i) {
