@@ -43,4 +43,8 @@ export class UsersListComponent implements OnInit {
     this.usersListService.sortDirection = direction;
   }
 
+  deleteUser(user: User) {
+    this.usersService.deleteUser(user.id).subscribe(res => res);
+  }
+
 }

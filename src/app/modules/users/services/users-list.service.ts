@@ -105,10 +105,7 @@ export class UsersListService {
 
   private _search(): Observable<SearchResult> {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
-    console.log(this.allUsers);
     
-    
-
     // 1. sort
     let users = sort(this.allUsers, sortColumn, sortDirection);
 

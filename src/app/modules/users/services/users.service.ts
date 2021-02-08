@@ -54,6 +54,15 @@ export class UsersService {
     )
   }
 
+  // HttpClient API delete() method => Delete user
+  deleteUser(id: number){
+    return this.http.delete<User>(Config.apiURL + '/users/' + id, this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // Error handling 
   handleError(error) {
     let errorMessage = '';

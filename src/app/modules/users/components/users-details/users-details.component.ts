@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/interfaces/user';
 import { LoadingService } from 'src/app/core/services/loading.service';
 import { UsersListService } from '../../services/users-list.service';
-import { of, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-users-details',
@@ -29,12 +28,13 @@ export class UsersDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+      this.path = this.router.url.split('/').slice(1);
       if (params.userId !== undefined) {
         this.userId = params.userId;
         setTimeout(() => {
           this.userService.getUser(this.userId).subscribe(user => {
+            this.path.splice(1, 1 , user.name);
             this.fillForm(user);
-            this.fillBreadcrumb(user.name);
           });
         });
       }

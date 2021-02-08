@@ -2,11 +2,7 @@ import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.componen
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageTranslationModule } from './modules/language-translation/language-translation.module';
-import { NgbdSortableHeader } from './directives/sortable.directive';
 import { MarkAsteriskDirective } from './directives/mark-asterisk.directive';
-import { LoadingComponent } from './components/loading/loading.component';
-
-
 
 @NgModule({
   declarations: [BreadcrumbComponent, MarkAsteriskDirective],
@@ -14,6 +10,6 @@ import { LoadingComponent } from './components/loading/loading.component';
     CommonModule,
     LanguageTranslationModule
   ],
-  exports: [BreadcrumbComponent]
+  exports: [BreadcrumbComponent, MarkAsteriskDirective]
 })
 export class SharedModule { }

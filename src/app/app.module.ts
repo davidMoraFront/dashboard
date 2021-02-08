@@ -1,3 +1,4 @@
+import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,7 +18,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    LanguageTranslationModule
+    LanguageTranslationModule,
+    // SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
