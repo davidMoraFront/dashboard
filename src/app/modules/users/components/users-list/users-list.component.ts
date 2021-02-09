@@ -6,6 +6,8 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NgbdSortableHeader, SortEvent } from 'src/app/shared/directives/sortable.directive';
 import { User } from 'src/app/shared/interfaces/user';
 import { UsersListService } from '../../services/users-list.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 
 @Component({
   selector: 'app-users-list',
@@ -17,10 +19,16 @@ export class UsersListComponent implements OnInit {
   public path: Array<string>;
   users$: Observable<User[]>;
   total$: Observable<number>;
+  
+  userDeleteText: string = '';
+  bodyText: string = 'Are you sure you want to delete the user ';
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(private router: Router, public usersListService: UsersListService, public usersService: UsersService) {
+  constructor(private router: Router, 
+    public usersListService: UsersListService, 
+    public usersService: UsersService,
+    private modalService: NgbModal) {
     this.users$ = usersListService.users$;
     this.total$ = usersListService.total$;
    }
@@ -43,8 +51,25 @@ export class UsersListComponent implements OnInit {
     this.usersListService.sortDirection = direction;
   }
 
-  deleteUser(user: User) {
-    this.usersService.deleteUser(user.id).subscribe(res => res);
+  openModal(user: User) {
+    const modalRef = this.modalService.open(ModalComponent, { centered: true });
+    modalRef.componentInstance.bodyText = this.bodyText + user.name;
+    modalRef.componentInstance.user = user;
+    modalRef.result.then(res => {
+      if (res) {
+        console.log(res);
+        this.usersService.deleteUser(user.id).subscribe(res => {
+          res
+        });}
+    })
   }
+
+  // save(user: User) {
+  //   this.usersService.deleteUser(user.id).subscribe(res => {
+  //     res
+  //   });
+  // }
+
+  // Are you sure you want to delete the user Juan
 
 }

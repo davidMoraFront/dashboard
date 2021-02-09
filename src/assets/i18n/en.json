@@ -14,5 +14,6 @@
     "Farsi": "Farsi",
     "German": "German",
     "Simplified Chinese": "Simplified Chinese",
-    "create": "create"
+    "create": "create",
+    "Are you sure you want to delete the user {user.name}": "Are you sure you want to delete the user {user.name}"
 }

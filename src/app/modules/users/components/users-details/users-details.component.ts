@@ -99,7 +99,7 @@ export class UsersDetailsComponent implements OnInit {
     if (this.userId === undefined) {
       this.userService.addUser(this.userForm.value).subscribe();
     } else {
-      this.userService.updateUser(this.userId, this.userForm.value).subscribe(res => {res; console.log(res)});
+      this.userService.updateUser(this.userId, this.userForm.value).subscribe(res => res);
     }
     this.router.navigate(['/users']);
   }

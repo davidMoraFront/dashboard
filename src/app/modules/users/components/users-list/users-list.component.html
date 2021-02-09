@@ -27,7 +27,7 @@
         <td><ngb-highlight [result]="user.email" [term]="usersListService.searchTerm"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.address.city" [term]="usersListService.searchTerm"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.company.companyName" [term]="usersListService.searchTerm"></ngb-highlight></td>
-        <td><button (click)="$event.stopPropagation(); deleteUser(user)">Delete</button></td>
+        <td><button (click)="$event.stopPropagation(); openModal(user)">Delete</button></td>
       </tr>
       </tbody>
     </table>
