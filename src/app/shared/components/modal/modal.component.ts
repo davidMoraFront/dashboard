@@ -8,17 +8,13 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+  @Input() data: unknown;
+  @Input() title: string;
   @Input() bodyText: string;
-  @Input() user: User;
 
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {
-  }
-
-  save() {
-    this.activeModal.close([this.bodyText, this.user]);
-  }
-  
+  }  
 
 }

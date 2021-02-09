@@ -1,6 +1,6 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -9,5 +9,5 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
-    <button type="button" class="btn btn-outline-dark" (click)="save()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close(data)">Save</button>
   </div>

@@ -22,6 +22,7 @@ export class UsersListComponent implements OnInit {
   
   userDeleteText: string = '';
   bodyText: string = 'Are you sure you want to delete the user ';
+  title: string = 'User delete';
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
@@ -53,23 +54,15 @@ export class UsersListComponent implements OnInit {
 
   openModal(user: User) {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
+    modalRef.componentInstance.title = this.title;
     modalRef.componentInstance.bodyText = this.bodyText + user.name;
-    modalRef.componentInstance.user = user;
+    modalRef.componentInstance.data = user;
     modalRef.result.then(res => {
       if (res) {
-        console.log(res);
-        this.usersService.deleteUser(user.id).subscribe(res => {
-          res
-        });}
+        this.usersService.deleteUser(user.id).subscribe();
+        this.usersService.getUsers().subscribe((res: User[]) => this.usersListService.load(res));
+      }
     })
   }
-
-  // save(user: User) {
-  //   this.usersService.deleteUser(user.id).subscribe(res => {
-  //     res
-  //   });
-  // }
-
-  // Are you sure you want to delete the user Juan
 
 }
