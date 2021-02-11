@@ -1,3 +1,4 @@
+import { ToastService } from './../../../../shared/services/toast.service';
 import { UsersService } from './../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -22,7 +23,8 @@ export class UsersDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userService: UsersService,
     public loadingService: LoadingService,
-    public usersListService: UsersListService) {
+    public usersListService: UsersListService,
+    private toastService: ToastService) {
       this.userForm = this.fb.group({})
     }
 
@@ -102,6 +104,7 @@ export class UsersDetailsComponent implements OnInit {
       this.userService.updateUser(this.userId, this.userForm.value).subscribe(res => res);
     }
     this.router.navigate(['/users']);
+    this.toastService.showSuccess('I am a standard toast');
   }
 
 }

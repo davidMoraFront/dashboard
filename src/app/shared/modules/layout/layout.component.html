@@ -4,6 +4,7 @@
     [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }"></app-sidebar>
 <div class="main-container">
     <app-loading *ngIf="loadingService.loadingStatus"></app-loading>
+    <app-toast aria-live="polite" aria-atomic="true" *ngIf="!loadingService.loadingStatus"></app-toast>
     <router-outlet></router-outlet>
 </div>
 

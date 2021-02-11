@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbCollapseModule, NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbDropdownModule, NgbNavModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { LanguageTranslationModule } from '../language-translation/language-translation.module';
 import { LoadingComponent } from '../../components/loading/loading.component';
+import { ToastComponent } from '../../components/toast/toast.component';
 
 @NgModule({
-  declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LoadingComponent],
+  declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LoadingComponent, ToastComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
@@ -19,7 +20,8 @@ import { LoadingComponent } from '../../components/loading/loading.component';
     NgbCollapseModule,
     NgbNavModule,
     NgbDropdownModule,
-    LanguageTranslationModule
+    LanguageTranslationModule,
+    NgbToastModule
   ]
 })
 export class LayoutModule { }
