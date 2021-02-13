@@ -2,9 +2,10 @@
 <app-sidebar (collapsedEvent)="receiveCollapsed($event)"
     (toggleEvent)="receiveToggle($event)"
     [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }"></app-sidebar>
-<div class="main-container">
+<main class="main-container">
     <app-loading *ngIf="loadingService.loadingStatus"></app-loading>
     <app-toast aria-live="polite" aria-atomic="true" *ngIf="!loadingService.loadingStatus"></app-toast>
+    <app-breadcrumb></app-breadcrumb>
     <router-outlet></router-outlet>
-</div>
+</main>
 

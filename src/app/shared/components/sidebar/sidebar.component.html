@@ -1,54 +1,69 @@
-<!-- <div class="d-flex">
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
-        &#9776;
-      </button>
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-pills collapse navbar-collapse" orientation="vertical" [ngbCollapse]="isMenuCollapsed">
-
-  
-    </ul>
-  
-    <div [ngbNavOutlet]="nav" class="ml-4"></div>
-  </div> -->
-
-    <!-- <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed"> -->
-        <button class="navbar-toggler" type="button" (click)="toggleShow(); isMenuCollapsed = !isMenuCollapsed;">
-        &#9776;
-      </button>
-<nav class="sidebar" [ngClass]="{'hide' : isMenuCollapsed, 'collapsed': menuCollapsedIcons}">
-    <ul class="sidebar-list nav-pills collapse navbar-collapse" ngbNav #nav="ngbNav" [(activeId)]="active" orientation="vertical" [ngbCollapse]="isMenuCollapsed">
-        <li class="sidebar-list-item" ngbNavItem>
-            <a ngbNavLink routerLink="/dashboard">
+<button class="navbar-toggler" type="button" (click)="toggleShow(); isMenuCollapsed = !isMenuCollapsed;">&#9776;</button>
+<nav class="sidebar" [ngClass]="{'hide' : isMenuCollapsed, 'collapsed': menuCollapsedIcons }">
+    <ul class="sidebar-list nav-pills collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
+        <li class="sidebar-list-item">
+            <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-dashboard"></i>
-            <span>{{ 'Dashboard' | translate }}</span>
+                <span>{{ 'Dashboard' | translate }}</span>
             </a>
         </li>
-        <li class="sidebar-list-item" ngbNavItem>
-            <a ngbNavLink routerLink="/users">
+        <li class="sidebar-list-item">
+            <a routerLink="/users" [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-user"></i>
-            <span>{{ 'Users' | translate }}</span>
+                <span>{{ 'Users' | translate }}</span>
             </a>
         </li>
-        <li class="sidebar-list-item" ngbNavItem>
-            <a ngbNavLink>
+        <li class="sidebar-list-item">
+            <a [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-bar-chart-o"></i>
-            <span>{{ 'Charts' | translate }}</span>
+                <span>{{ 'Charts' | translate }}</span>
             </a>
         </li>
-        <li class="sidebar-list-item" ngbNavItem>
-            <a ngbNavLink>
+        <li class="sidebar-list-item">
+            <a [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-table"></i>
-            <span>{{ 'Tables' | translate }}</span>
+                <span>{{ 'Tables' | translate }}</span>
             </a>
         </li>
-        <li class="sidebar-list-item" ngbNavItem>
-            <a ngbNavLink>
+        <li class="sidebar-list-item">
+            <a [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-edit"></i>
-            <span>{{ 'Forms' | translate }}</span>
+                <span>{{ 'Forms' | translate }}</span>
             </a>
+        </li>
+        <li class="sidebar-list-item">
+            <div class="nested-menu">
+                <a (click)="addExpandClass('pages')" class="sidebar-list-group-item">
+                    <i class="fa fa-plus"></i>&nbsp;
+                    <span>{{ 'Menu' | translate }}</span>
+                </a>
+                <div [class.expand]="showMenu === 'pages'" class="nested">
+                    <ul class="submenu">
+                        <li>
+                            <a href="javascript:void(0)" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Submenu1' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Submenu2' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" [routerLinkActive]="['router-link-active']">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Submenu3' | translate }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </li>
     </ul>
     <div (click)="toggleCollapsed()" [ngClass]="{ collapsed: menuCollapsedIcons }" class="toggle-button">
-        <i class="fa fa-fw fa-angle-double-{{ menuCollapsedIcons ? 'right' : 'left' }}"></i>&nbsp;
+        <i class="fa fa-fw fa-angle-double-{{ menuCollapsedIcons ? 'right' : 'left' }}"></i>
         <span>{{ 'Collapse Sidebar' | translate }}</span>
     </div>
 </nav>

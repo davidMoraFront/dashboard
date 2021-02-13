@@ -1,4 +1,4 @@
-<ng-container *ngFor="let item of path; last as isLast">
+<ng-container *ngFor="let item of breadcrumbService.path; last as isLast">
     <div *ngIf="!isLast; then noLastItem else lastItem"></div>
     <ng-template #noLastItem>
         <a href="{{item}}">{{ item | translate }}</a>

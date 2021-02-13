@@ -1,3 +1,4 @@
+import { BreadcrumbService } from './../../../../shared/services/breadcrumb.service';
 import { ToastService } from './../../../../shared/services/toast.service';
 import { UsersService } from './../../services/users.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +25,8 @@ export class UsersDetailsComponent implements OnInit {
     private userService: UsersService,
     public loadingService: LoadingService,
     public usersListService: UsersListService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private breadcrumbService: BreadcrumbService) {
       this.userForm = this.fb.group({})
     }
 
@@ -35,8 +37,9 @@ export class UsersDetailsComponent implements OnInit {
         this.userId = params.userId;
         setTimeout(() => {
           this.userService.getUser(this.userId).subscribe(user => {
-            this.path.splice(1, 1 , user.name);
             this.fillForm(user);
+            this.path.splice(1, 1 , user.name);
+            this.breadcrumbService.set(this.path);
           });
         });
       }

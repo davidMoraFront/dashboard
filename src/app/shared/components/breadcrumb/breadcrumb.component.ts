@@ -1,3 +1,4 @@
+import { BreadcrumbService } from './../../services/breadcrumb.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent implements OnInit {
-  @Input() path: Array<string>;
 
-  constructor() { }
+  constructor(public breadcrumbService:BreadcrumbService) { }
 
   ngOnInit(): void {
   }

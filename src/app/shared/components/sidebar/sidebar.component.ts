@@ -8,18 +8,27 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SidebarComponent implements OnInit {
   isMenuCollapsed: boolean;
   menuCollapsedIcons: boolean;
-  active = 'top';
+  // active = 3;
+  active;
   menuHide: boolean;
+  showMenu: string;
 
   @Output() collapsedEvent = new EventEmitter<boolean>();
   @Output() toggleEvent = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.isMenuCollapsed = false;
-    this.menuCollapsedIcons = false;
-    this.menuHide = false;
+    setTimeout(() => {
+      if (window.innerWidth < 992) {
+        this.isMenuCollapsed = true;
+        this.menuHide = !this.menuHide;
+        console.log(this.menuHide);
+      } else {
+        this.isMenuCollapsed = false;
+      }
+    }, 0);
+    this.showMenu = '';
   }
 
   toggleCollapsed() {
@@ -32,33 +41,12 @@ export class SidebarComponent implements OnInit {
     this.toggleEvent.emit(this.menuHide);
   }
 
+  addExpandClass(element: any) {
+    if (element === this.showMenu) {
+        this.showMenu = '0';
+    } else {
+        this.showMenu = element;
+    }
 }
 
-/* 
-NgbCollapseModule,
-    NgbNavModule,
-    TranslateModule */
-
-
-    /* import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// import { SidebarRoutingModule } from './sidebar-routing.module';
-import { SidebarComponent } from './sidebar.component';
-import { NgbCollapseModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-
-
-@NgModule({
-  // declarations: [SidebarComponent],
-  imports: [
-    CommonModule,
-    // SidebarRoutingModule,
-    NgbCollapseModule,
-    NgbNavModule,
-    TranslateModule
-  ],
-  // exports: [SidebarComponent]
-})
-export class SidebarModule { }
- */
+}

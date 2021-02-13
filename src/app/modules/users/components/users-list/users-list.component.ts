@@ -1,3 +1,4 @@
+import { BreadcrumbService } from './../../../../shared/services/breadcrumb.service';
 import { LoadingService } from './../../../../core/services/loading.service';
 import { Observable } from 'rxjs';
 import { UsersService } from './../../services/users.service';
@@ -29,13 +30,15 @@ export class UsersListComponent implements OnInit {
   constructor(private router: Router, 
     public usersListService: UsersListService, 
     public usersService: UsersService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private breadcrumbService:BreadcrumbService) {
     this.users$ = usersListService.users$;
     this.total$ = usersListService.total$;
    }
 
   ngOnInit(): void {
     this.path = this.router.url.split('/').slice(1);
+    this.breadcrumbService.set(this.path);
     setTimeout(() => {
       this.usersService.getUsers().subscribe((res: User[]) => this.usersListService.load(res));
     });

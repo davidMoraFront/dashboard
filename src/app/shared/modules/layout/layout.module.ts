@@ -1,3 +1,4 @@
+import { BreadcrumbComponent } from './../../components/breadcrumb/breadcrumb.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { NgModule } from '@angular/core';
@@ -12,7 +13,14 @@ import { LoadingComponent } from '../../components/loading/loading.component';
 import { ToastComponent } from '../../components/toast/toast.component';
 
 @NgModule({
-  declarations: [LayoutComponent, SidebarComponent, HeaderComponent, LoadingComponent, ToastComponent],
+  declarations: [
+    LayoutComponent, 
+    SidebarComponent, 
+    HeaderComponent, 
+    LoadingComponent, 
+    ToastComponent, 
+    BreadcrumbComponent
+  ],
   imports: [
     CommonModule,
     LayoutRoutingModule,
