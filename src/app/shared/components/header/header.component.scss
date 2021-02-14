@@ -1,0 +1,60 @@
+@import "../../../../styles.scss";
+
+:host {
+  .header {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #333333;
+
+    .brand {
+      margin-left: 45px;
+      color: $link-nav-color;
+      display: inline-block;
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+      font-size: 1.25rem;
+      line-height: inherit;
+      white-space: nowrap;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    .header-list {
+      border-bottom: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+
+      .header-list-item {
+        & > a[ngbdropdowntoggle] {
+          background-color: $background-color-primary;
+          color: $link-nav-color;
+          outline: 0;
+          border: 0;
+          margin-bottom: -1px;
+          border-top-left-radius: 0.25rem;
+          border-top-right-radius: 0.25rem;
+          display: block;
+          padding: 0.5rem 1rem;
+
+          &:hover {
+            color: $link-nav-hover-color;
+          }
+        }
+
+        .flag-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,5 @@
-import { HeaderModule } from './../header/header.module';
 import { BreadcrumbComponent } from './../../components/breadcrumb/breadcrumb.component';
-import { HeaderComponent } from '../header/header.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +16,7 @@ import { ToastComponent } from '../../components/toast/toast.component';
   declarations: [
     LayoutComponent, 
     SidebarComponent, 
-    // HeaderComponent, 
+    HeaderComponent, 
     LoadingComponent, 
     ToastComponent, 
     BreadcrumbComponent
@@ -29,8 +28,7 @@ import { ToastComponent } from '../../components/toast/toast.component';
     LayoutRoutingModule,
     NgbCollapseModule,
     NgbDropdownModule,
-    NgbToastModule, 
-    HeaderModule
+    NgbToastModule
   ]
 })
 export class LayoutModule { }
