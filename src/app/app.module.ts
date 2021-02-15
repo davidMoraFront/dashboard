@@ -10,11 +10,13 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './core/components/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     // LoadingComponent
   ],
   imports: [
