@@ -8,10 +8,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     // LoadingComponent
   ],
   imports: [
@@ -19,6 +22,8 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     HttpClientModule,
     AppRoutingModule,
     LanguageTranslationModule,
+    FormsModule,
+    ReactiveFormsModule
     // SharedModule
   ],
   providers: [{

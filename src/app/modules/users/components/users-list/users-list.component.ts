@@ -20,10 +20,11 @@ export class UsersListComponent implements OnInit {
   public path: Array<string>;
   users$: Observable<User[]>;
   total$: Observable<number>;
+  title: string = 'Users list';
   
   userDeleteText: string = '';
-  bodyText: string = 'Are you sure you want to delete the user ';
-  title: string = 'User delete';
+  modalBody: string = 'Are you sure you want to delete the user ';
+  modalTitle: string = 'User delete';
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
@@ -57,8 +58,8 @@ export class UsersListComponent implements OnInit {
 
   openModal(user: User) {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
-    modalRef.componentInstance.title = this.title;
-    modalRef.componentInstance.bodyText = this.bodyText + user.name;
+    modalRef.componentInstance.modalTitle = this.title;
+    modalRef.componentInstance.modalBody = this.modalBody + user.name;
     modalRef.componentInstance.data = user;
     modalRef.result.then(res => {
       if (res) {

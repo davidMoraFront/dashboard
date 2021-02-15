@@ -15,7 +15,7 @@ import { UsersListService } from '../../services/users-list.service';
 })
 export class UsersDetailsComponent implements OnInit {
   public path: Array<string>;
-  title = 'User details';
+  title: string = 'User details';
   userForm: FormGroup;
   userId: number;
 
