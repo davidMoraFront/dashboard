@@ -118,14 +118,6 @@
           }
         }
       }
-
-      // .header-fields {
-      //   padding-top: 10px;
-
-      //   > .sidebar-list-item:first-child {
-      //     border-top: 1px solid rgba(255, 255, 255, 0.2);
-      //   }
-      // }
     }
 
     .toggle-button {
@@ -164,69 +156,6 @@
     &.collapsed {
       width: 60px;
     }
-
-    // .sidebar-dropdown {
-    //   *:focus {
-    //     border-radius: none;
-    //     border: none;
-    //   }
-
-    //   .panel-title {
-    //     font-size: 1rem;
-    //     height: 50px;
-    //     margin-bottom: 0;
-
-    //     a {
-    //       color: #999;
-    //       text-decoration: none;
-    //       font-weight: 400;
-    //       background: $background-color-primary;
-
-    //       span {
-    //         position: relative;
-    //         display: block;
-    //         padding: 0.75rem 1.5rem;
-    //         padding-top: 1rem;
-    //       }
-    //     }
-
-    //     a:hover,
-    //     a:focus {
-    //       color: #fff;
-    //       outline: none;
-    //       outline-offset: -2px;
-    //     }
-    //   }
-
-    //   .panel-title:hover {
-    //     background: darken($background-color-primary, 5%);
-    //   }
-
-    //   .panel-collapse {
-    //     border-radius: 0;
-    //     border: none;
-
-    //     .panel-body {
-    //       .sidebar-list-item {
-    //         border-radius: 0;
-    //         background-color: $background-color-primary;
-    //         border: 0 solid transparent;
-
-    //         a {
-    //           color: #999;
-    //         }
-
-    //         a:hover {
-    //           color: #fff;
-    //         }
-    //       }
-
-    //       .sidebar-list-item:hover {
-    //         background: darken($background-color-primary, 5%);
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   &.collapsed {

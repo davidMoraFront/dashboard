@@ -2,12 +2,14 @@
 /* variables */
 $link-nav-color: #999999;
 $link-nav-hover-color: #ffffff;
-$link-nav-hover-color-reverse: #333333;
+$link-nav-hover-color-reverse: #222222;
 $link-nav-active-color: #ffffff;
-$background-color-primary: #333333;
+$background-color-primary: #222222;
 $background-color-dark: #000000;
-$border-color: #333333;
+$border-color: #222222;
+$border-color-light: #ffffff;
 $color-placeholder: #cccccc;
+$color-light: #ffffff;
 
 *::placeholder {
   color: $color-placeholder;

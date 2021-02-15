@@ -1,0 +1,47 @@
+@import "../../../../styles.scss";
+
+.login {
+  background-color: $background-color-primary;
+  height: 100vh;
+
+  .login-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    height: 100%;
+
+    .logo {
+      width: 150px;
+      border-radius: 50%;
+      border: 2px solid $border-color-light;
+    }
+
+    h1 {
+      color: $color-light;
+      font-weight: 300;
+      margin-top: 20px;
+    }
+
+    form {
+      width: 100%;
+
+      .form-group {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .container-buttons {
+        justify-content: space-between;
+
+        button {
+          width: 40%;
+          color: $color-light;
+          border: 1px solid $border-color-light;
+        }
+      }
+    }
+  }
+}
