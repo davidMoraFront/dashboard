@@ -1,13 +1,13 @@
-import { UsersService } from './users.service';
+import { EmployeesService } from './employees.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { User } from '../../../shared/interfaces/user';
+import { Employee } from '../../../shared/interfaces/employee';
 import { tap, debounceTime, switchMap, delay } from 'rxjs/operators';
 import { SortColumn, SortDirection } from 'src/app/shared/directives/sortable.directive';
 
 interface SearchResult {
-  users: User[];
+  employees: Employee[];
   total: number;
 }
 
@@ -21,39 +21,39 @@ interface State {
 
 const compare = (v1: string | number | Object, v2: string | number | Object) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
-function sort(users: User[], column: SortColumn, direction: string): User[] {
+function sort(employees: Employee[], column: SortColumn, direction: string): Employee[] {
   if (direction === '' || column === '') {
-    return users;
+    return employees;
   } else if (column.includes('.')) {
     let arraySub = column.split('.');
     let col = arraySub[0];
     let subColumn = arraySub[arraySub.length - 1];
-    return [...users].sort((a, b) => {
+    return [...employees].sort((a, b) => {
       const res = compare(Object(a[col])[subColumn], Object(b[col])[subColumn]);
       return direction === 'asc' ? res : -res;
     });
   } else {
-    return [...users].sort((a, b) => {
+    return [...employees].sort((a, b) => {
       const res = compare(a[column], b[column]);
       return direction === 'asc' ? res : -res;
     });
   }
 }
 
-function matches(user: User, term: string) {
-  return user.name.toLowerCase().includes(term.toLowerCase())
-    || user.email.toLowerCase().includes(term.toLowerCase())
-    || user.address.city.toLowerCase().includes(term.toLowerCase())
-    || user.company.companyName.toLowerCase().includes(term.toLowerCase());
+function matches(employee: Employee, term: string) {
+  return employee.name.toLowerCase().includes(term.toLowerCase())
+    || employee.email.toLowerCase().includes(term.toLowerCase())
+    || employee.address.city.toLowerCase().includes(term.toLowerCase())
+    || employee.company.companyName.toLowerCase().includes(term.toLowerCase());
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersListService {
+export class EmployeesListService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _users$ = new BehaviorSubject<User[]>([]);
+  private _employees$ = new BehaviorSubject<Employee[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
 
   private _state: State = {
@@ -64,9 +64,9 @@ export class UsersListService {
     sortDirection: ''
   };
 
-  constructor(private http: HttpClient, private userService: UsersService) {}
+  constructor(private http: HttpClient, private employeeService: EmployeesService) {}
 
-  load(res: User[]) {
+  load(res: Employee[]) {
     setTimeout(() => {
       this._search$.pipe(
         tap(() => this._loading$.next(true)),
@@ -75,15 +75,15 @@ export class UsersListService {
         delay(200),
         tap(() => this._loading$.next(false))
       ).subscribe(result => {
-        this._users$.next(result.users);
+        this._employees$.next(result.employees);
         this._total$.next(result.total);
       });
       this._search$.next();
     });
-    this.allUsers = res;
+    this.allEmployees = res;
   }
 
-  get users$() { return this._users$.asObservable(); }
+  get employees$() { return this._employees$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
   get loading$() { return this._loading$.asObservable(); }
   get page() { return this._state.page; }
@@ -101,20 +101,20 @@ export class UsersListService {
     this._search$.next();
   }
 
-  allUsers = this.userService.getUsers().subscribe(res => this.allUsers = res);
+  allEmployees = this.employeeService.getEmployees().subscribe(res => this.allEmployees = res);
 
   private _search(): Observable<SearchResult> {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
     
     // 1. sort
-    let users = sort(this.allUsers, sortColumn, sortDirection);
+    let employees = sort(this.allEmployees, sortColumn, sortDirection);
 
     // 2. filter
-    users = users.filter(user => matches(user, searchTerm));
-    const total = users.length;
+    employees = employees.filter(employee => matches(employee, searchTerm));
+    const total = employees.length;
 
     // 3. paginate
-    users = users.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({users, total});
+    employees = employees.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+    return of({employees, total});
   }
 }

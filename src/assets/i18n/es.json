@@ -1,6 +1,6 @@
 {
     "Dashboard": "Principal",
-    "Users": "Usuarios",
+    "Employees": "Empleados",
     "Charts": "Gráficos",
     "Tables": "Tablas",
     "Forms": "Formularios",
@@ -15,5 +15,5 @@
     "German": "Alemán",
     "Simplified Chinese": "Chino simplificado",
     "create": "crear",
-    "Are you sure you want to delete the user {user.name}": "esta seguro que desea eliminar al usuario {user.name}"
+    "Are you sure you want to delete the employee {employee.name}": "esta seguro que desea eliminar al empleado {employee.name}"
 }

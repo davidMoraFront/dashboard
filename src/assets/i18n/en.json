@@ -1,6 +1,6 @@
 {
     "Dashboard": "Dashboard",
-    "Users": "Users",
+    "Employees": "Employees",
     "Charts": "Charts",
     "Tables": "Tables",
     "Forms": "Forms",
@@ -15,5 +15,5 @@
     "German": "German",
     "Simplified Chinese": "Simplified Chinese",
     "create": "create",
-    "Are you sure you want to delete the user {user.name}": "Are you sure you want to delete the user {user.name}"
+    "Are you sure you want to delete the employee {employee.name}": "Are you sure you want to delete the employee {employee.name}"
 }

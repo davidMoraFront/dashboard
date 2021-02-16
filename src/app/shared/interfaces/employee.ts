@@ -1,7 +1,7 @@
 import { Address } from "./address";
 import { Company } from "./company";
 
-export class User {
+export class Employee {
     id: number;
     name: string;
     username: string;

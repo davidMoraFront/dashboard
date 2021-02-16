@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { User } from '../../../shared/interfaces/user';
+import { Employee } from '../../../shared/interfaces/employee';
 import { retry, catchError } from 'rxjs/operators';
 import { Config } from 'src/app/core/config/config';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class EmployeesService {
   
   constructor(private http: HttpClient) {}
 
@@ -18,45 +18,45 @@ export class UsersService {
     })
   }  
 
-  // HttpClient API get() method => Fetch users list
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(Config.apiURL + '/users')
+  // HttpClient API get() method => Fetch employees list
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(Config.apiURL + '/employees')
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  // HttpClient API get() method => Fetch user
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(Config.apiURL + '/users/' + id)
+  // HttpClient API get() method => Fetch employee
+  getEmployee(id: number): Observable<Employee> {
+    return this.http.get<Employee>(Config.apiURL + '/employees/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }  
 
-  // HttpClient API post() method => Create user
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(Config.apiURL + '/users', JSON.stringify(user), this.httpOptions)
+  // HttpClient API post() method => Create employee
+  addEmployee(employee: Employee): Observable<Employee> {
+    return this.http.post<Employee>(Config.apiURL + '/employees', JSON.stringify(employee), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  // HttpClient API put() method => Update user
-  updateUser(id: number, user: User): Observable<User> {
-    return this.http.put<User>(Config.apiURL + '/users/' + id, JSON.stringify(user), this.httpOptions)
+  // HttpClient API put() method => Update employee
+  updateEmployee(id: number, employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(Config.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  // HttpClient API delete() method => Delete user
-  deleteUser(id: number){
-    return this.http.delete<User>(Config.apiURL + '/users/' + id, this.httpOptions)
+  // HttpClient API delete() method => Delete employee
+  deleteEmployee(id: number){
+    return this.http.delete<Employee>(Config.apiURL + '/employees/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
