@@ -1,4 +1,14 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "username": "DavidUser",
+      "password": "123456",
+      "name": "David",
+      "email": "David@test.com",
+      "jwtToken": "123456789"
+    }
+  ],
   "employees": [
     {
       "name": "Ervin Howell",

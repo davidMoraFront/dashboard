@@ -28,20 +28,14 @@ export class LoadingInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    // console.log(this.requests);
-    
-    // console.log('detect request', request.url);
-
     this.requests.push(request);
     this.loadingService.isLoading.next(true);
-    
     // return next.handle(request);
     return new Observable(observer => {
       const subscription = next.handle(request).subscribe(event => {
         if (event instanceof HttpResponse) {
           this.removeRequest(request);
           observer.next(event);
-          // console.log('remove requests', request.url);
         }
       }, error => {
         this.removeRequest(request);

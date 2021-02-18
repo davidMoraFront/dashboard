@@ -1,1 +1,4 @@
 <!-- <app-breadcrumb [path]="path"></app-breadcrumb> -->
+<ul *ngIf="users">
+    <li *ngFor="let user of users">{{user.username}}</li>
+</ul>
