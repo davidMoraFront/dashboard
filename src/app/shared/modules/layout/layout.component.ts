@@ -19,11 +19,12 @@ export class LayoutComponent implements OnInit {
     public toastService: ToastService, 
     public breadcrumbService: BreadcrumbService,
     private authenticationService: AuthenticationService) {
-      this.authenticationService.user.subscribe(x => this.user = x);
+      
     }
 
   ngOnInit(): void {
     // this.loadingService.isLoading.next(false);
+    this.authenticationService.user.subscribe(res => this.user = res);
     setTimeout(() => {
       if (window.innerWidth < 992) {
         this.hideSideBar = true;

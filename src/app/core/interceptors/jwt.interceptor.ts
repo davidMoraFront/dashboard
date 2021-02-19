@@ -1,4 +1,3 @@
-import { Config } from 'src/app/core/config/config';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -8,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
     const user = this.authenticationService.userValue;
     const isLoggedIn = user && user.jwtToken;
     // const isApiUrl = request.url.startsWith(environment.apiUrl);
-    const isApiUrl = request.url.startsWith(Config.apiURL);
+    const isApiUrl = request.url.startsWith(environment.apiURL);
     if (isLoggedIn && isApiUrl) {
         request = request.clone({
             setHeaders: { Authorization: `Bearer ${user.jwtToken}` }

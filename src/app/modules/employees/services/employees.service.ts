@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Employee } from '../../../shared/interfaces/employee';
 import { retry, catchError } from 'rxjs/operators';
-import { Config } from 'src/app/core/config/config';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class EmployeesService {
 
   // HttpClient API get() method => Fetch employees list
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(Config.apiURL + '/employees')
+    return this.http.get<Employee[]>(environment.apiURL + '/employees')
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -29,7 +29,7 @@ export class EmployeesService {
 
   // HttpClient API get() method => Fetch employee
   getEmployee(id: number): Observable<Employee> {
-    return this.http.get<Employee>(Config.apiURL + '/employees/' + id)
+    return this.http.get<Employee>(environment.apiURL + '/employees/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -38,7 +38,7 @@ export class EmployeesService {
 
   // HttpClient API post() method => Create employee
   addEmployee(employee: Employee): Observable<Employee> {
-    return this.http.post<Employee>(Config.apiURL + '/employees', JSON.stringify(employee), this.httpOptions)
+    return this.http.post<Employee>(environment.apiURL + '/employees', JSON.stringify(employee), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -47,7 +47,7 @@ export class EmployeesService {
 
   // HttpClient API put() method => Update employee
   updateEmployee(id: number, employee: Employee): Observable<Employee> {
-    return this.http.put<Employee>(Config.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)
+    return this.http.put<Employee>(environment.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -56,7 +56,7 @@ export class EmployeesService {
 
   // HttpClient API delete() method => Delete employee
   deleteEmployee(id: number){
-    return this.http.delete<Employee>(Config.apiURL + '/employees/' + id, this.httpOptions)
+    return this.http.delete<Employee>(environment.apiURL + '/employees/' + id, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

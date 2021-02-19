@@ -1,12 +1,137 @@
 {
   "users": [
     {
-      "id": 1,
       "username": "DavidUser",
       "password": "123456",
-      "name": "David",
       "email": "David@test.com",
-      "jwtToken": "123456789"
+      "repeatPassword": "123456",
+      "id": 1
+    },
+    {
+      "username": "JuanUser",
+      "email": "juan@test.com",
+      "password": "112233",
+      "repeatPassword": "112233",
+      "id": 2
+    },
+    {
+      "username": "sofia",
+      "email": "sofia@sofia.com",
+      "password": "098765",
+      "repeatPassword": "098765",
+      "id": 3
+    },
+    {
+      "username": "dms",
+      "email": "dms@dms.com",
+      "password": "123",
+      "repeatPassword": "123",
+      "id": 4
+    },
+    {
+      "username": "sm",
+      "email": "sm@sm.com",
+      "password": "12",
+      "repeatPassword": "12",
+      "id": 5
+    },
+    {
+      "id": 15,
+      "username": "aa",
+      "email": "aa@aa.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2NTQyNjl9"
+    },
+    {
+      "id": 16,
+      "username": "zz",
+      "email": "zz@zz.com",
+      "password": "11",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2NTQ0NjZ9"
+    },
+    {
+      "id": 17,
+      "username": "xx",
+      "email": "xx@xx.com",
+      "password": "11",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2NTQ2MDZ9",
+      "refreshTokens": []
+    },
+    {
+      "id": 18,
+      "username": "qp",
+      "password": "123",
+      "email": "qp@qp.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODQ4Mjd9"
+    },
+    {
+      "id": 19,
+      "username": "qa",
+      "password": "123",
+      "email": "qa@qa.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODYxNDV9"
+    },
+    {
+      "id": 20,
+      "username": "az",
+      "password": "123",
+      "email": "az@az.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODc1NTJ9"
+    },
+    {
+      "id": 21,
+      "username": "ax",
+      "password": "123",
+      "email": "ax@ax.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODc4MjJ9"
+    },
+    {
+      "id": 22,
+      "username": "ac",
+      "password": "12",
+      "email": "ac@ac.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODgxOTl9"
+    },
+    {
+      "id": 23,
+      "username": "av",
+      "password": "12",
+      "email": "av@av.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODg1MDl9"
+    },
+    {
+      "id": 24,
+      "username": "ab",
+      "password": "12",
+      "email": "ab@ab.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODg4MTB9"
+    },
+    {
+      "id": 25,
+      "username": "an",
+      "password": "12",
+      "email": "an@an.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2ODk1OTR9"
+    },
+    {
+      "id": 27,
+      "username": "ad",
+      "password": "12",
+      "email": "ad@ad.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2OTM3NTF9"
+    },
+    {
+      "id": 28,
+      "username": "af",
+      "password": "12",
+      "email": "af@af.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2OTQ2OTJ9"
+    },
+    {
+      "id": 29,
+      "username": "ag",
+      "password": "12",
+      "email": "ag@ag.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM2OTQ5NDl9"
     }
   ],
   "employees": [

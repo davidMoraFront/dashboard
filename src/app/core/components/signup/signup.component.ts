@@ -1,7 +1,10 @@
+import { ToastService } from './../../../shared/services/toast.service';
+import { UserService } from 'src/app/core/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Config } from '../../config/config';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,11 +14,16 @@ import { Config } from '../../config/config';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   logo: string;
+  save: string
 
   constructor(private router: Router,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private userService: UserService,
+    private authenticationService:AuthenticationService,
+    private toastService:ToastService) { }
 
   ngOnInit(): void {
+    this.save = "Usuario registrado corretamente";
     this.logo = Config.logo;
     this.signupForm = this.fb.group({
       username: ['', Validators.required],
@@ -26,7 +34,14 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['']);
+    this.authenticationService.register(this.signupForm.value).subscribe(res => {
+      this.userService.addUser(res).subscribe(() => {
+        this.router.navigate(['../login']);
+        this.toastService.showSuccess(this.save);
+      });
+    });
+    
+    // this.router.navigate(['']);
   }
 
   login(): void{

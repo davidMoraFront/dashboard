@@ -11,12 +11,14 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
 
 // array in local storage for users
-const usersKey = 'angular-10-jwt-refresh-token-users';
+// const usersKey = 'angular-10-jwt-refresh-token-users';
+// const users = JSON.parse(localStorage.getItem(usersKey)) || [];
+const usersKey = 'users';
 const users = JSON.parse(localStorage.getItem(usersKey)) || [];
 
 // add test user and save if users array is empty
 if (!users.length) {
-    users.push({ id: 1,  firstName: 'Test', lastName: 'User', username: 'test', password: 'test', refreshTokens: [] });
+    users.push({ id: 1,  email: 'test@test.com', username: 'test', password: 'test', repeatPassword: 'test', refreshTokens: [] });
     localStorage.setItem(usersKey, JSON.stringify(users));
 }
 
@@ -43,6 +45,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 return refreshToken();
             case url.endsWith('/users/revoke-token') && method === 'POST':
                 return revokeToken();
+            case url.endsWith('/users/register') && method === 'POST':
+                return register();
             case url.endsWith('/users') && method === 'GET':
                 return getUsers();
             default:
@@ -66,9 +70,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return ok({
             id: user.id,
             username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            jwtToken: generateJwtToken()
+            password: user.password,
+            email: user.email,
+            jwtToken: generateJwtToken(),
+            // refreshTokens: user.refreshTokens
         })
     }
 
@@ -89,9 +94,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         return ok({
             id: user.id,
             username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            jwtToken: generateJwtToken()
+            password: user.password,
+            email: user.email,
+            jwtToken: generateJwtToken(),
+            // refreshTokens: user.refreshTokens
         })
     }
 
@@ -112,6 +118,31 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         if (!isLoggedIn()) return unauthorized();
         return ok(users);
     }
+
+    function register() {
+      const user = JSON.parse(body);
+      user.refreshTokens = [];
+      console.log(users);
+
+      if (users.find(x => x.email === user.email)) {
+          return error('Email "' + user.email + '" is already taken')
+      }
+
+      user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
+      users.push(user);
+      user.refreshTokens.push(generateRefreshToken());
+      localStorage.setItem(usersKey, JSON.stringify(users));
+
+      // return ok();
+      return ok({
+        id: user.id,
+        username: user.username,
+        password: user.password,
+        email: user.email,
+        jwtToken: generateJwtToken(),
+        // refreshTokens: user.refreshTokens
+    });
+  }
 
     // helper functions
 

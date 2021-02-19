@@ -1,10 +1,10 @@
-import { Config } from 'src/app/core/config/config';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class AuthenticationService {
 
     login(username: string, password: string) {
         // return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password }, { withCredentials: true })
-        return this.http.post<any>(`${Config.apiURL}/users/authenticate`, { username, password }, { withCredentials: true })
+        return this.http.post<any>(`${environment.apiURL}/users/authenticate`, { username, password }, { withCredentials: true })
             .pipe(map(user => {
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer();
@@ -38,7 +38,7 @@ export class AuthenticationService {
 
     logout() {
         // this.http.post<any>(`${environment.apiUrl}/users/revoke-token`, {}, { withCredentials: true }).subscribe();
-        this.http.post<any>(`${Config.apiURL}/users/revoke-token`, {}, { withCredentials: true }).subscribe();
+        this.http.post<any>(`${environment.apiURL}/users/revoke-token`, {}, { withCredentials: true }).subscribe();
         this.stopRefreshTokenTimer();
         this.userSubject.next(null);
         this.router.navigate(['/login']);
@@ -46,12 +46,25 @@ export class AuthenticationService {
 
     refreshToken() {
         // return this.http.post<any>(`${environment.apiUrl}/users/refresh-token`, {}, { withCredentials: true })
-        return this.http.post<any>(`${Config.apiURL}/users/refresh-token`, {}, { withCredentials: true })
+        return this.http.post<any>(`${environment.apiURL}/users/refresh-token`, {}, { withCredentials: true })
             .pipe(map((user) => {
                 this.userSubject.next(user);
                 this.startRefreshTokenTimer();
                 return user;
             }));
+    }
+
+    register(user: User): Observable<User> {
+      return this.http.post<User>(environment.apiURL + '/users/register', JSON.stringify(user))
+        .pipe(map(user => {
+          this.userSubject.next(user);
+          this.startRefreshTokenTimer();
+          return user;
+      }));
+        // .pipe(
+        //   retry(1),
+        //   catchError(this.handleError)
+        // )
     }
 
     // helper methods
