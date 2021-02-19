@@ -13,6 +13,13 @@
       "password": "123456",
       "email": "david@david.com",
       "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM3NzQyNTZ9"
+    },
+    {
+      "id": 3,
+      "username": "john",
+      "password": "112233",
+      "email": "john@john.com",
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM3NzQ2OTl9"
     }
   ],
   "employees": [
