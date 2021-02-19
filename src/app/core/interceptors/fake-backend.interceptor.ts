@@ -18,7 +18,7 @@ const users = JSON.parse(localStorage.getItem(usersKey)) || [];
 
 // add test user and save if users array is empty
 if (!users.length) {
-    users.push({ id: 1,  email: 'test@test.com', username: 'test', password: 'test', repeatPassword: 'test', refreshTokens: [] });
+    users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });
     localStorage.setItem(usersKey, JSON.stringify(users));
 }
 
@@ -128,6 +128,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return error('Email "' + user.email + '" is already taken')
       }
 
+      delete user.repeatPassword;
       user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
       users.push(user);
       user.refreshTokens.push(generateRefreshToken());
