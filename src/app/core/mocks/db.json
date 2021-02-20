@@ -1,13 +1,5 @@
 {
-  "users": [
-    {
-      "id": 2,
-      "username": "david",
-      "password": "123456",
-      "email": "david@david.com",
-      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM4NjU0MTJ9"
-    }
-  ],
+  "users": [],
   "employees": [
     {
       "id": 1,
