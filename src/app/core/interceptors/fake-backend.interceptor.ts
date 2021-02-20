@@ -8,18 +8,20 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
+import { delay, dematerialize, materialize, mergeMap, map } from 'rxjs/operators';
 
 // array in local storage for users
-// const usersKey = 'angular-10-jwt-refresh-token-users';
-// const users = JSON.parse(localStorage.getItem(usersKey)) || [];
-const usersKey = 'users';
+// const usersKey = 'users';
+const usersKey = 'user-refreshTokens';
 const users = JSON.parse(localStorage.getItem(usersKey)) || [];
+let user = JSON.parse(localStorage.getItem(usersKey)) || {};    //    =>    show user logged    
 
 // add test user and save if users array is empty
 if (!users.length) {
     users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });
-    localStorage.setItem(usersKey, JSON.stringify(users));
+    // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
+    user = { id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] };
+    localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
 }
 
 @Injectable()
@@ -65,7 +67,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // add refresh token to user
         user.refreshTokens.push(generateRefreshToken());
-        localStorage.setItem(usersKey, JSON.stringify(users));
+        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
+        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
 
         return ok({
             id: user.id,
@@ -89,7 +92,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // replace old refresh token with a new one and save
         user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
         user.refreshTokens.push(generateRefreshToken());
-        localStorage.setItem(usersKey, JSON.stringify(users));
+        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
+        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
 
         return ok({
             id: user.id,
@@ -109,7 +113,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         
         // revoke token and save
         user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
-        localStorage.setItem(usersKey, JSON.stringify(users));
+        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
+        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
 
         return ok();
     }
@@ -132,7 +137,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1;
       users.push(user);
       user.refreshTokens.push(generateRefreshToken());
-      localStorage.setItem(usersKey, JSON.stringify(users));
+      // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
+      localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
 
       // return ok();
       return ok({

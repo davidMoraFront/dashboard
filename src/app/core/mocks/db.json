@@ -1,25 +1,11 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "test",
-      "password": "test",
-      "email": "test@test.com",
-      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM3NzAwMDB9"
-    },
-    {
       "id": 2,
       "username": "david",
       "password": "123456",
       "email": "david@david.com",
-      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM3NzQyNTZ9"
-    },
-    {
-      "id": 3,
-      "username": "john",
-      "password": "112233",
-      "email": "john@john.com",
-      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM3NzQ2OTl9"
+      "jwtToken": "fake-jwt-token.eyJleHAiOjE2MTM4NjU0MTJ9"
     }
   ],
   "employees": [
