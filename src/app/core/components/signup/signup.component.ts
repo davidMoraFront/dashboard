@@ -36,13 +36,13 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.authenticationService.register(this.signupForm.value).subscribe(res => {
       this.userService.addUser(res).subscribe(() => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/employees']);
         this.toastService.showSuccess(this.save);
       });
     });
   }
 
   login(): void{
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/login']);
   } 
 }

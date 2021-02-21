@@ -13,7 +13,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   logo: string;
-  returnUrl: string;
+  returnUrl: string = '/employees';
   submitted = false;
   error = '';
 
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService) { 
       // redirect to home if already logged in
       if (this.authenticationService.userValue) { 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate([this.returnUrl]);
       }
     }
 
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/employees';
   }
 
   // convenience getter for easy access to form fields

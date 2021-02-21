@@ -1,12 +1,12 @@
 <button class="navbar-toggler" type="button" (click)="toggleShow(); isMenuCollapsed = !isMenuCollapsed;">&#9776;</button>
 <nav class="sidebar" [ngClass]="{'hide' : isMenuCollapsed, 'collapsed': menuCollapsedIcons }">
     <ul class="sidebar-list nav-pills collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
-        <li class="sidebar-list-item">
+        <!-- <li class="sidebar-list-item">
             <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-dashboard"></i>
                 <span>{{ 'Dashboard' | translate }}</span>
             </a>
-        </li>
+        </li> -->
         <li class="sidebar-list-item">
             <a routerLink="/employees" [routerLinkActive]="['router-link-active']">
                 <i class="fa fa-fw fa-user"></i>

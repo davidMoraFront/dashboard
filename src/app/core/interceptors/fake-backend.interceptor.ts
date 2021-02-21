@@ -18,7 +18,7 @@ let user = JSON.parse(localStorage.getItem(usersKey)) || {};    //    =>    show
 
 // add test user and save if users array is empty
 if (!users.length) {
-    users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });
+    // users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });    => load a user
     // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
     user = { id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] };
     localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
