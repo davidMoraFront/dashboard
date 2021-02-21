@@ -27,7 +27,7 @@
         <td><ngb-highlight [result]="employee.email" [term]="EmployeesListService.searchTerm"></ngb-highlight></td>
         <td><ngb-highlight [result]="employee.address.city" [term]="EmployeesListService.searchTerm"></ngb-highlight></td>
         <td><ngb-highlight [result]="employee.company.companyName" [term]="EmployeesListService.searchTerm"></ngb-highlight></td>
-        <td><button (click)="$event.stopPropagation(); openModal(employee)">Delete</button></td>
+        <td><button class="btn btn-danger" (click)="$event.stopPropagation(); openModal(employee)"><i class="fa fa-fw fa-trash"></i></button></td>
       </tr>
       </tbody>
     </table>

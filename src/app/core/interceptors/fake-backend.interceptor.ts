@@ -127,7 +127,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function register() {
       const user = JSON.parse(body);
       user.refreshTokens = [];
-      console.log(users);
 
       if (users.find(x => x.email === user.email)) {
           return error('Email "' + user.email + '" is already taken')
