@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.  
 Run `json-server --watch src/app/core/mocks/db.json` to communicate with the `db.json` database. It will update automatically. In case of error in new records when making code modifications, users must be cleared from the database and localStorage and browser cookies must be cleared.
 
 ## Code scaffolding

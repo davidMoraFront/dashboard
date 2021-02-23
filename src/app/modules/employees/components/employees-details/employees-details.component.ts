@@ -31,8 +31,8 @@ export class EmployeesDetailsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.create = 'Employee create successfully';
-    this.update = 'Employee update successfully';
+    this.create = 'Employee created successfully';
+    this.update = 'Employee updated successfully';
     this.activatedRoute.params.subscribe(params => {
       this.path = this.router.url.split('/').slice(1);
       if (params.employeeId !== undefined) {
