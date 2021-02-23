@@ -36,7 +36,6 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
       }
     })
   ],
-  exports: [LanguageTranslationModule, TranslateModule],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
