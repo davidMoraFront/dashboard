@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   logo: string;
   returnUrl: string = '/employees';
-  submitted = false;
-  error = '';
+  error: string = '';
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -40,12 +39,8 @@ export class LoginComponent implements OnInit {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
-  // onSubmit() {
-  //   this.router.navigate(['']);
-  // }
-
   onSubmit() {
-    this.submitted = true;
+    // this.submitted = true;
 
         // stop here if form is invalid
         if (this.loginForm.invalid) {

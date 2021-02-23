@@ -22,8 +22,9 @@ export class EmployeesListComponent implements OnInit {
   title: string = 'Employees list';
   
   employeeDeleteText: string = '';
-  modalBody: string = 'Are you sure you want to delete the employee ';
   modalTitle: string = 'Employee delete';
+  modalBody: string = 'Are you sure you want to delete the employee';
+  employeeName: Employee;
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
@@ -57,9 +58,9 @@ export class EmployeesListComponent implements OnInit {
 
   openModal(employee: Employee) {
     const modalRef = this.modalService.open(ModalComponent, { centered: true });
-    modalRef.componentInstance.modalTitle = this.title;
-    modalRef.componentInstance.modalBody = this.modalBody + employee.name;
-    modalRef.componentInstance.data = employee;
+    modalRef.componentInstance.modalTitle = this.modalTitle;
+    modalRef.componentInstance.modalBody = this.modalBody;
+    modalRef.componentInstance.employeeName = employee.name;
     modalRef.result.then(res => {
       if (res) {
         this.EmployeesService.deleteEmployee(employee.id).subscribe();

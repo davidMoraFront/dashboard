@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/shared/interfaces/employee';
 import { LoadingService } from 'src/app/core/services/loading.service';
-import { EmployeesListService } from '../../services/employees-list.service';
 
 @Component({
   selector: 'app-employees-details',
@@ -26,7 +25,6 @@ export class EmployeesDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private employeeService: EmployeesService,
     public loadingService: LoadingService,
-    public EmployeesListService: EmployeesListService,
     private toastService: ToastService,
     private breadcrumbService: BreadcrumbService) {
       this.employeeForm = this.fb.group({})

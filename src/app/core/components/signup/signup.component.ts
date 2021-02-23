@@ -14,7 +14,8 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   logo: string;
-  save: string
+  save: string;
+  error: string = '';
 
   constructor(private router: Router,
     private fb: FormBuilder,

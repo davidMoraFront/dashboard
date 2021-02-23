@@ -9,9 +9,11 @@ export class MarkAsteriskDirective implements OnInit {
 
   ngOnInit() {
     const parent = this.renderer.parentNode(this.el.nativeElement);
+    console.log(parent);
+    
 
     if (parent.getElementsByTagName('label').length && !parent.getElementsByClassName('required').length) {
-      parent.getElementsByTagName('label')[0].innerHTML += '<span class="required">*</span>';
+      parent.getElementsByTagName('label')[0].insertAdjacentHTML('beforeend', '<span class="required">*</span>');
     }
   }
 

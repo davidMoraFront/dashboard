@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BreadcrumbComponent implements OnInit {
 
-  constructor(public breadcrumbService:BreadcrumbService) { }
+  constructor(public breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
   }

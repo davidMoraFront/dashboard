@@ -8,6 +8,8 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { EmployeesDetailsComponent } from './components/employees-details/employees-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LanguageTranslationModule } from 'src/app/shared/modules/language-translation/language-translation.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({

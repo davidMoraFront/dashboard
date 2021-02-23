@@ -9,6 +9,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class HeaderComponent implements OnInit {
   lang: string;
+  title: string = "Dashboard";
 
   constructor(private translate: TranslateService, private authenticationService: AuthenticationService) { }
 

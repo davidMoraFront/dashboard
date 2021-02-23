@@ -1,19 +1,19 @@
-<div class="title"><h2>{{title}}</h2></div>
-<button class="btn btn-primary" routerLink="/employees/create">Create employee</button>
+<div class="title"><h2>{{ title | translate }}</h2></div>
+<button class="btn btn-primary" routerLink="/employees/create">{{ 'Create employee' | translate }}</button>
 <form>
     <div class="form-group form-inline">
-        Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="EmployeesListService.searchTerm"/>
-        <span class="ml-3" *ngIf="EmployeesListService.loading$ | async">Loading...</span>
+        {{ 'Full text search:' | translate }}<input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="EmployeesListService.searchTerm"/>
+        <span class="ml-3" *ngIf="EmployeesListService.loading$ | async">{{ 'Loading...' | translate }}</span>
     </div>
   
     <table class="table table-striped">
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
-        <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
-        <th scope="col" sortable="address.city" (sort)="onSort($event)">City</th>
-        <th scope="col" sortable="company.companyName" (sort)="onSort($event)">Company name</th>
+        <th scope="col" sortable="name" (sort)="onSort($event)">{{ 'Name' | translate }}</th>
+        <th scope="col" sortable="email" (sort)="onSort($event)">{{ 'Email' | translate }}</th>
+        <th scope="col" sortable="address.city" (sort)="onSort($event)">{{ 'City' | translate }}</th>
+        <th scope="col" sortable="company.companyName" (sort)="onSort($event)">{{ 'Company name' | translate }}</th>
         <th scope="col"></th>
       </tr>
       </thead>
@@ -38,9 +38,9 @@
       </ngb-pagination>
   
       <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="EmployeesListService.pageSize">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
+        <option [ngValue]="2">2 {{ 'items per page' | translate }}</option>
+        <option [ngValue]="4">4 {{ 'items per page' | translate }}</option>
+        <option [ngValue]="6">6 {{ 'items per page' | translate }}</option>
       </select>
     </div>
   

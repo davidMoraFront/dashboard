@@ -12,15 +12,15 @@ export function httpTranslateLoader(http: HttpClient) {
   declarations: [],
   imports: [
     CommonModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoader,
-        deps: [HttpClient]
-      }
-    })
+    // TranslateModule.forRoot({
+    //   loader: {
+    //     provide: TranslateLoader,
+    //     useFactory: httpTranslateLoader,
+    //     deps: [HttpClient]
+    //   }
+    // })
   ],
-  exports: [TranslateModule]
+  // exports: [TranslateModule]
 })
 export class LanguageTranslationModule {
   constructor(private translate: TranslateService) {
@@ -28,6 +28,6 @@ export class LanguageTranslationModule {
       this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
       this.translate.setDefaultLang('en');
       const browserLang = this.translate.getBrowserLang();
-      this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
+      this.translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
   }
 }

@@ -4,8 +4,8 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { httpTranslateLoader, LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoginComponent } from './core/components/login/login.component';
@@ -16,6 +16,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { AuthenticationService } from './core/services/authentication.service';
 import { fakeBackendProvider } from './core/interceptors/fake-backend.interceptor';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,17 @@ import { fakeBackendProvider } from './core/interceptors/fake-backend.intercepto
     AppRoutingModule,
     LanguageTranslationModule,
     FormsModule,
-    ReactiveFormsModule
-    // SharedModule
+    ReactiveFormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
+    SharedModule
   ],
+  exports: [LanguageTranslationModule, TranslateModule],
   providers: [
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AuthenticationService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
