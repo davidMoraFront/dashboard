@@ -2,11 +2,9 @@
   "users": [],
   "employees": [
     {
-      "id": 1,
       "name": "Leanne Graham",
       "username": "Bret",
       "email": "Sincere@april.biz",
-      "phone": "1-770-736-8031 x56442",
       "address": {
         "street": "Kulas Light",
         "suite": "Apt. 556",
@@ -17,12 +15,14 @@
           "lng": "81.1496"
         }
       },
+      "phone": "1-770-736-8031 x56442",
       "company": {
         "companyName": "Romaguera-Crona",
         "catchPhrase": "Multi-layered client-server neural-net",
         "basicService": "harness real-time e-markets",
         "website": "hildegard.org"
-      }
+      },
+      "id": 1
     },
     {
       "id": 2,
@@ -230,29 +230,6 @@
         "basicService": "target end-to-end models",
         "website": "ambrose.net"
       }
-    },
-    {
-      "name": "",
-      "username": "",
-      "email": "",
-      "address": {
-        "street": "",
-        "suite": "",
-        "city": "",
-        "zipcode": "",
-        "geo": {
-          "lat": "",
-          "lng": ""
-        }
-      },
-      "phone": "",
-      "company": {
-        "companyName": "",
-        "catchPhrase": "",
-        "basicService": "",
-        "website": ""
-      },
-      "id": 11
     }
   ]
 }
