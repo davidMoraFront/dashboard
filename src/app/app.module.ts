@@ -1,13 +1,10 @@
-import { SharedModule } from 'src/app/shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { httpTranslateLoader, LanguageTranslationModule } from './shared/modules/language-translation/language-translation.module';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './core/components/signup/signup.component';
@@ -22,8 +19,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
-    // LoadingComponent
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +34,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    }),
-    SharedModule
+    })
   ],
   exports: [LanguageTranslationModule, TranslateModule],
   providers: [
