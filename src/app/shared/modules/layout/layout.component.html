@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-sidebar (collapsedEvent)="receiveCollapsed($event)"
     (toggleEvent)="receiveToggle($event)"
-    [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }" *ngIf="user"></app-sidebar>
+    [ngClass]="{ collapsed: collapedSideBar, hide: hideSideBar }"></app-sidebar>
 <main class="main-container">
     <app-loading *ngIf="loadingService.loadingStatus"></app-loading>
     <app-toast aria-live="polite" aria-atomic="true" *ngIf="!loadingService.loadingStatus"></app-toast>
