@@ -10,18 +10,15 @@ import {
 import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize, mergeMap, map } from 'rxjs/operators';
 
-// array in local storage for users 
-// const usersKey = 'users';  
-const usersKey = 'user-refreshTokens'; 
+// array in local storage for users
+const usersKey = 'users';
 const users = JSON.parse(localStorage.getItem(usersKey)) || [];
-// let user = JSON.parse(localStorage.getItem(usersKey)) || {};    //    =>    show user logged    
 
 // add test user and save if users array is empty
-if (!users.length) {
-    users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });
-    // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
-    localStorage.setItem(usersKey, JSON.stringify(users[0].refreshTokens.map((res: string) => res)));
-}
+// if (!users.length) {
+//     users.push({ id: 1, username: 'test', password: 'test', email: 'test@test.com', refreshTokens: [] });
+//     localStorage.setItem(usersKey, JSON.stringify(users));
+// }
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
@@ -66,17 +63,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // add refresh token to user
         user.refreshTokens.push(generateRefreshToken());
-        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
-        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
-
+        localStorage.setItem(usersKey, JSON.stringify(users));
+        
         return ok({
             id: user.id,
             username: user.username,
             password: user.password,
             email: user.email, 
-            jwtToken: generateJwtToken(),
-            refreshTokens: user.refreshTokens
-        })
+            jwtToken: generateJwtToken()
+        });
     }
 
     function refreshToken() {
@@ -91,16 +86,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // replace old refresh token with a new one and save
         user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
         user.refreshTokens.push(generateRefreshToken());
-        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
-        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
-
+        localStorage.setItem(usersKey, JSON.stringify(users));
+        
         return ok({
             id: user.id,
             username: user.username,
             password: user.password,
             email: user.email,
-            jwtToken: generateJwtToken(),
-            refreshTokens: user.refreshTokens
+            jwtToken: generateJwtToken()
         })
     }
 
@@ -112,9 +105,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         
         // revoke token and save
         user.refreshTokens = user.refreshTokens.filter(x => x !== refreshToken);
-        // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
-        localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
- 
+        localStorage.setItem(usersKey, JSON.stringify(users));
+        
         return ok();
     }
 
@@ -127,7 +119,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       const user = JSON.parse(body);
       user.refreshTokens = [];
 
-      if (users.find(x => x.email === user.email)) {
+      if (!users && users.find(x => x.email === user.email)) {
           return error('Email "' + user.email + '" is already taken')
       }
 
@@ -135,17 +127,14 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       user.id = users.length ? Math.max(...users.map(x => x.id)) + 1 : 1; 
       users.push(user);
       user.refreshTokens.push(generateRefreshToken());
-      // localStorage.setItem(usersKey, JSON.stringify(users));   =>    show users
-      localStorage.setItem(usersKey, JSON.stringify(user.refreshTokens.map((res: string) => res)));
-
+      localStorage.setItem(usersKey, JSON.stringify(users));
       // return ok();
       return ok({
         id: user.id,
         username: user.username,
         password: user.password,
         email: user.email,
-        jwtToken: generateJwtToken(),
-        refreshTokens: user.refreshTokens
+        jwtToken: generateJwtToken()
     });
   }
 
